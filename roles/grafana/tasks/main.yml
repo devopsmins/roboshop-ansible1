@@ -1,0 +1,13 @@
+- name: Create dashboard File
+  ansible.builtin.template:
+    src: dashboard.json
+    dest: /tmp/dashboard.json
+
+- name: Add Grafana dashboard
+  community.grafana.grafana_dashboard:
+    grafana_url: http://172.31.46.200:3000
+    grafana_api_key: ""
+    state: present
+    commit_message: Updated by ansible
+    overwrite: yes
+    path: /tmp/dashboard.json
