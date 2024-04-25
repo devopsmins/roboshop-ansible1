@@ -15,7 +15,7 @@
   ansible.builtin.dnf:
     name: nodejs
     state: present
-    when: node_stat.rc != 0
+  when: node_stat.rc != 0
 
 - name: Import Common Role- App Pre-requisites
   ansible.builtin.import_role:
