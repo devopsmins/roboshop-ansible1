@@ -48,3 +48,4 @@ groups:
           env: {{env}}
         annotations:
           summary: Critical | Backend NodeJS Service Down
+
