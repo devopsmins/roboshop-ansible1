@@ -1,0 +1,10 @@
+component: cart
+log_file: /var/log/cart.log
+
+app_dir: /app
+app_user: roboshop
+service_name: cart
+
+schema-needed: false
+
+
