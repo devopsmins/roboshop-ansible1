@@ -1,7 +1,7 @@
 - name: Check NodeJs
   ansible.builtin.shell: type node
   ignore_errors: yes
-  out: node_stat
+  register: node_stat
 
 - name: Disable NodeJs default version
   ansible.builtin.shell: dnf module disable nodejs -y
@@ -21,10 +21,7 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: app-prereq
-  vars:
-    app_dir: "{{app_dir}}"
-    component: "{{component}}"
-    app_user: "{{app_user}}"
+
 
 - name: Import SystemD
   ansible.builtin.import_role:
