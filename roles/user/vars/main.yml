@@ -1,0 +1,6 @@
+component: catalogue
+log_file: /var/log/user.log
+
+app_dir: /app
+app_user: roboshop
+service_name: user

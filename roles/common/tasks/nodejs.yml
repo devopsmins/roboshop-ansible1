@@ -1,5 +1,3 @@
-- name : Set Hostname
-  ansible.builtin.shell: set-hostname {{env}}-{{component}}
 
 - name: Disable NodeJs default version
   ansible.builtin.shell: dnf module disable nodejs -y
@@ -10,59 +8,40 @@
     name: nodejs
     state: present
 
-- name: Copy catalogue Services file
-  ansible.builtin.template:
-    src: catalogue.service
-    dest: /etc/systemd/system/catalogue.service
+- name: Import SystemD
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
 
-- name: Add Application user
-  ansible.builtin.user:
-    name: expense
 
 - name: Import Common Role- App Pre-requisites
   ansible.builtin.import_role:
     name: common
     tasks_from: app-prereq
   vars:
-    app_dir: /app
-    component: catalogue
-    app_user: roboshop
+    app_dir: "{{app_dir}}"
+    component: "{{component}}"
+    app_user: "{{app_user}}"
 
 
 - name: Download NodeJs Dependencies
   ansible.builtin.shell: npm install
   args:
     chdir: /app
+
 - name: Install New Relic NodeJS Library
   ansible.builtin.shell: npm install newrelic --save
   args:
     chdir: /app
 
-- name: Copy Backend StartUP Script
-  ansible.builtin.template:
-    src: run.sh
-    dest: /app/run.sh
 
-- name: Copy MongoDB repo file
-  ansible.builtin.template:
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo
-
-- name: Install Mongo Repo file
-  ansible.builtin.dnf:
-    name: mongodb-org-shell
-    state: installed
-
-
-- name: Import ELK Role- Filebeat
+- name: Import Schema
   ansible.builtin.import_role:
-    name: elk
-    tasks_from: filebeat
+    name: common
+    tasks_from: schema-load
 
 
-
-- name: Import Prometheus- Node Exporter
+- name: Import Observability
   ansible.builtin.import_role:
-    name: prometheus
-    tasks_from: node-exporter
-
+    name: common
+    tasks_from: observability
