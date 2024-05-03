@@ -1,7 +1,7 @@
-component: catalogue
+component: user
 log_file: /var/log/user.log
 
 app_dir: /app
 app_user: roboshop
 service_name: user
-schema_load: false
+schema_needed: false
