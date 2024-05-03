@@ -6,5 +6,4 @@ app_user: roboshop
 service_name: catalogue
 
 schema_needed: true
-
-
+schema_type: mongo

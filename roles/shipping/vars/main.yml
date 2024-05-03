@@ -1,0 +1,11 @@
+component: shipping
+log_file: /var/log/shipping.log
+
+app_dir: /app
+app_user: roboshop
+service_name: shipping
+
+schema_needed: true
+scema_type: mysql
+
+

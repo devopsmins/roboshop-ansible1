@@ -1,9 +1,21 @@
-- name: Copy MongoDB repo file
-  ansible.builtin.template:
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo
+- name: MongoDB Schema Load
+  when: schema_type == "mongo"
+  block:
+    - name: Copy MongoDB repo file
+      ansible.builtin.template:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
 
-- name: Install Mongo Repo file
-  ansible.builtin.dnf:
-    name: mongodb-org-shell
-    state: installed
+    - name: Install Mongo Client
+      ansible.builtin.dnf:
+        name: mongodb-org-shell
+        state: installed
+
+
+- name: Mysql Schema Load
+  when: schema_type == "mysql"
+  block:
+    - name: Install Mysql Client
+      ansible.builtin.dnf:
+        name: mongodb-org-shell
+        state: installed
