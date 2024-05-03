@@ -5,6 +5,6 @@ app_dir: /app
 app_user: roboshop
 service_name: catalogue
 
-schema-needed: true
+schema_needed: true
 
 
