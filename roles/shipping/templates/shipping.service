@@ -1,12 +1,12 @@
 [Unit]
-Description = Cart Service
+Description=Shipping Service
+
 [Service]
 User=roboshop
-Environment=REDIS_HOST=<REDIS-SERVER-IP>
-Environment=CATALOGUE_HOST=<CATALOGUE-SERVER-IP>
-Environment=CATALOGUE_PORT=8080
-ExecStart=/bin/node /app/server.js
-SyslogIdentifier=cart
+Environment=CART_ENDPOINT=<CART-SERVER-IPADDRESS>:8080
+Environment=DB_HOST=<MYSQL-SERVER-IPADDRESS>
+ExecStart=/bin/java -jar /app/shipping.jar
+SyslogIdentifier=shipping
 
 [Install]
 WantedBy=multi-user.target
