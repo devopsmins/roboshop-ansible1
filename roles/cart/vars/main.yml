@@ -5,6 +5,6 @@ app_dir: /app
 app_user: roboshop
 service_name: cart
 
-schema-needed: false
+schema_needed: false
 
 
