@@ -9,3 +9,10 @@
   ansible.builtin.template:
     src: "{{ app_type }}.sh"
     dest: /app/{{ app_type }}.sh
+
+- name: Start App Service
+  ansible.builtin.systemd:
+    name: "{{component}}"
+    state: started
+    enabled: yes
+    daemon_reload: yes
