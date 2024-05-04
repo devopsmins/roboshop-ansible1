@@ -1,5 +1,5 @@
-- name: Import Java
+- name: Import GoLang
   ansible.builtin.import_role:
     name: common
-    tasks_from: java
+    tasks_from: golang
 

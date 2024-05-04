@@ -1,11 +1,11 @@
-component: shipping
-log_file: /var/log/shipping.log
+component: disatch
+log_file: /var/log/dispatch.log
 
 app_dir: /app
 app_user: roboshop
-service_name: shipping
+service_name: dispatch
 
-schema_needed: true
-scema_type: mysql
+schema_needed: false
+
 
 
