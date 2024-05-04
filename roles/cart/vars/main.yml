@@ -6,5 +6,4 @@ app_user: roboshop
 service_name: cart
 
 schema_needed: false
-
-
+app_type: nodejs
