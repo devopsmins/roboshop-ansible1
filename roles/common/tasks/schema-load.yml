@@ -11,6 +11,14 @@
         name: mongodb-org-shell
         state: installed
 
+    - name: Load Schema
+      ansible.builtin.shell: mongo --ssl --host {{ENDPOINT}} --sslCAFile /app/rds-combined-ca-bundle.pem --username {{USERNAME}} --password {{PASSWORD}} </app/schema/{{ component }}.js
+      vars:
+        ENDPOINT: "{{ lookup('amazon.aws.aws_ssm', '{{env}}.{{project_name}}.catalogue.DOCDB_ENDPOINT', region='us-east-1' ) }}:27017"
+        USERNAME: "{{ lookup('amazon.aws.aws_ssm', '{{env}}.{{project_name}}.docdb.username', region='us-east-1' ) }}"
+        PASSWORD: "{{ lookup('amazon.aws.aws_ssm', '{{env}}.{{project_name}}.docdb.password', region='us-east-1' ) }}"
+
+
 
 - name: Mysql Schema Load
   when: schema_type == "mysql"
