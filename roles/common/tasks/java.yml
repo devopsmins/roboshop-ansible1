@@ -7,10 +7,11 @@
 #     dest: "/opt"
 #     remote_src: yes
 
-- name: Install Java 17
+- name: Install Maven
   ansible.builtin.dnf:
-    name: java-17-openjdk-devel
-    state: installed
+    name: maven
+    state: present
+  when: mvn_stat != 0
 
 - name: Import Common Role - App Pre-requisites
   ansible.builtin.import_role:
