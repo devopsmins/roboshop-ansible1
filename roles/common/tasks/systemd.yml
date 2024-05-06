@@ -13,6 +13,6 @@
 - name: Start App Service
   ansible.builtin.systemd:
     name: "{{component}}"
-    state: started
+    state: restarted
     enabled: yes
     daemon_reload: yes
